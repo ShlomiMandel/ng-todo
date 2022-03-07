@@ -29,5 +29,19 @@ export class TodoListComponent implements OnInit,OnDestroy {
       this.subscription.unsubscribe()
   }
 
+  public onTodoClick(todo: ITodo, index:number): void{
+    this.todoService.setSelectedTodo(todo);
+
+    // false-ל selected עובר על כל המערך ומשנה את ערך
+    this.todos.forEach(todo => {
+      if(todo.selected){
+        todo.selected = false;
+      }
+    })
+
+    //  true-של המשימה שנבחרה ל selected משנה את ערך 
+    this.todos[index].selected = true;
+
+  }
 }
 
